@@ -34,12 +34,13 @@ func _ready():
 	sprite.play()
 
 func _process(delta):
+	var world = get_tree().current_scene
+
 	if Input.is_action_just_pressed("ui_accept"):
 		muzzleFlashTimer.start(0.2)
 
 		var projectile = spawn_projectile()
 		print(projectile)
-		var world = get_tree().current_scene
 		world.add_child(projectile)
 
 	if muzzleFlashTimer.time_left > 0:
@@ -49,17 +50,27 @@ func _process(delta):
 
 	rotate_weapon_color()
 
+	var spinner_rotation = 0.0
 	var hue = 0.0
 	match weapon_color:
 		WeaponColor.Red:
 			hue = 0.0
+			spinner_rotation = 0.0
 		WeaponColor.Green:
 			hue = 0.3
+			spinner_rotation = 90.0
 		WeaponColor.Blue:
 			hue = 0.6
+			spinner_rotation = 180.0
 		WeaponColor.Purple:
 			hue = 0.7
+			spinner_rotation = 270.0
+
 	sprite.get_material().set_shader_param("hue", hue)
+
+	var weaponSpinner = world.find_node("WeaponSpinner")
+	var old_rotation = weaponSpinner.get_rotation()
+	weaponSpinner.set_rotation(lerp_angle(old_rotation, deg2rad(spinner_rotation), delta * 10))
 
 func _physics_process(delta):
 	move(delta)
