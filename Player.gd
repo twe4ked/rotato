@@ -121,7 +121,7 @@ func spawn_projectile():
 	return projectile
 
 func rotate_weapon_color():
-	if Input.is_action_just_pressed("ui_rotate"):
+	if Input.is_action_just_pressed("ui_down"):
 		match weapon_color:
 			WeaponColor.Red:
 				weapon_color = WeaponColor.Green
