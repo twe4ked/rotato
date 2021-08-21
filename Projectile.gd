@@ -34,11 +34,11 @@ func _ready():
 			hue = 0.7
 	sprite.get_material().set_shader_param("hue", hue)
 
-func _physics_process(delta):
-	move_and_collide(velocity * speed)
+func _physics_process(_delta):
+	var _c = move_and_collide(velocity * speed)
 
 	if !$VisibilityNotifier2D.is_on_screen():
 		queue_free()
 
-func _on_Hitbox_area_entered(area):
+func _on_Hitbox_area_entered(_area):
 	queue_free()
