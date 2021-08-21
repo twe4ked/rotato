@@ -12,6 +12,8 @@ export var weapon_color = WeaponColor.Blue
 onready var sprite = $AnimatedSprite
 
 func _ready():
+	sprite.play()
+
 	var hue = 0.0
 	match weapon_color:
 		WeaponColor.Red:
