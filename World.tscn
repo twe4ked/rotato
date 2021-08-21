@@ -245,6 +245,8 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 4, 0, 4 )
 [sub_resource type="ShaderMaterial" id=18]
 shader = ExtResource( 4 )
 shader_param/hue = 0.6
+shader_param/target_r = 0.4
+shader_param/target_b = 9.9
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -306,11 +308,22 @@ frame = 43
 [node name="Timer" type="Timer" parent="Player/MuzzleFlash"]
 one_shot = true
 
-[node name="Enemy" parent="." instance=ExtResource( 3 )]
+[node name="Node" type="Node" parent="."]
+
+[node name="Enemy" parent="Node" instance=ExtResource( 3 )]
 position = Vector2( 125.719, 129.4 )
+weapon_color = 3
+
+[node name="Enemy3" parent="Node" instance=ExtResource( 3 )]
+position = Vector2( 172.706, 98.5724 )
+weapon_color = 1
+
+[node name="Enemy2" parent="Node" instance=ExtResource( 3 )]
+position = Vector2( 75.3755, 90.1197 )
+weapon_color = 0
 
 [node name="WeaponSpinner" type="Node2D" parent="."]
-position = Vector2( 28.7369, 21.1329 )
+position = Vector2( 22, 22 )
 script = ExtResource( 6 )
 
 [node name="Red" parent="WeaponSpinner" instance=ExtResource( 8 )]

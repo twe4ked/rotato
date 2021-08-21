@@ -1,6 +1,8 @@
 shader_type canvas_item;
 
 uniform float hue = 0.0;
+uniform float target_r = 0.4;
+uniform float target_b = 9.9; // 1.0 will never be greater than this
 
 // https://gamedev.stackexchange.com/a/59808
 
@@ -23,7 +25,7 @@ vec3 hsv2rgb(vec3 c) {
 void fragment() {
 	vec4 previous_color = texture(TEXTURE, UV);
 
-	if (previous_color.r > 0.4) {
+	if (previous_color.r > target_r || previous_color.b > target_b) {
 		vec3 hsv = rgb2hsv(previous_color.rgb);
 		hsv.x = hue;
 		previous_color.rgb = hsv2rgb(hsv);
