@@ -19,9 +19,16 @@ onready var sprite = $AnimatedSprite
 onready var muzzleFlashTimer = $MuzzleFlash/Timer
 onready var muzzleFlash = $MuzzleFlash
 
+onready var Projectile = load("res://Projectile.tscn")
+
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		muzzleFlashTimer.start(0.2)
+
+		var projectile = spawn_projectile()
+		print(projectile)
+		var world = get_tree().current_scene
+		world.add_child(projectile)
 
 	if muzzleFlashTimer.time_left > 0:
 		muzzleFlash.visible = true
@@ -63,3 +70,14 @@ func move(delta):
 	sprite.flip_h = facing == Facing.Left
 
 	velocity = move_and_slide(velocity, Vector2.UP)
+
+func spawn_projectile():
+	var projectile = Projectile.instance()
+	projectile.position = global_position
+	projectile.position.y -= 5
+	if facing == Facing.Right:
+		projectile.position.x += 5
+	else:
+		projectile.position.x -= 21
+		projectile.flip = true
+	return projectile
