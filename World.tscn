@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://tilemap_packed.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Weapon.shader" type="Shader" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=14]
 points = PoolVector2Array( 0, 0, 0, 0, 16, 0, 16, 4, 4, 4, 4, 16, 0, 16 )
@@ -236,6 +237,10 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 4, 0, 4 )
 } ]
 9/z_index = 0
 
+[sub_resource type="ShaderMaterial" id=18]
+shader = ExtResource( 4 )
+shader_param/hue = 0.6
+
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 64, 16, 16 )
@@ -276,14 +281,16 @@ gravity = 500
 jump_force = 200
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
+material = SubResource( 18 )
 frames = SubResource( 4 )
-playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+visible = false
 position = Vector2( -0.162415, 2.67984 )
 shape = SubResource( 5 )
 
 [node name="MuzzleFlash" type="Sprite" parent="Player"]
+visible = false
 position = Vector2( 14, 3 )
 z_as_relative = false
 texture = ExtResource( 1 )

@@ -6,3 +6,5 @@
 
 # This file contains all the export presets for the project, including sensitive information such as Android keystore credentials.
 /export_presets.cfg
+
+/Target

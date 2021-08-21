@@ -15,11 +15,23 @@ enum Facing {
 	Right
 }
 
+enum WeaponColor {
+	Red
+	Green
+	Blue
+	Purple
+}
+
+var weapon_color = WeaponColor.Red
+
 onready var sprite = $AnimatedSprite
 onready var muzzleFlashTimer = $MuzzleFlash/Timer
 onready var muzzleFlash = $MuzzleFlash
 
 onready var Projectile = load("res://Projectile.tscn")
+
+func _ready():
+	sprite.play()
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
@@ -34,6 +46,20 @@ func _process(delta):
 		muzzleFlash.visible = true
 	else:
 		muzzleFlash.visible = false
+
+	rotate_weapon_color()
+
+	var hue = 0.0
+	match weapon_color:
+		WeaponColor.Red:
+			hue = 0.0
+		WeaponColor.Green:
+			hue = 0.3
+		WeaponColor.Blue:
+			hue = 0.6
+		WeaponColor.Purple:
+			hue = 0.7
+	sprite.get_material().set_shader_param("hue", hue)
 
 func _physics_process(delta):
 	move(delta)
@@ -73,6 +99,7 @@ func move(delta):
 
 func spawn_projectile():
 	var projectile = Projectile.instance()
+	projectile.weapon_color = weapon_color
 	projectile.position = global_position
 	projectile.position.y -= 5
 	if facing == Facing.Right:
@@ -81,3 +108,17 @@ func spawn_projectile():
 		projectile.position.x -= 21
 		projectile.flip = true
 	return projectile
+
+func rotate_weapon_color():
+	if Input.is_action_just_pressed("ui_rotate"):
+		match weapon_color:
+			WeaponColor.Red:
+				weapon_color = WeaponColor.Green
+			WeaponColor.Green:
+				weapon_color = WeaponColor.Blue
+			WeaponColor.Blue:
+				weapon_color = WeaponColor.Purple
+			WeaponColor.Purple:
+				weapon_color = WeaponColor.Red
+
+		print(weapon_color)
