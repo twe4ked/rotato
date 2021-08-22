@@ -52,6 +52,11 @@ shape = SubResource( 8 )
 [node name="WanderController" parent="." instance=ExtResource( 4 )]
 horizontal_only = true
 
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -0.0469172, 4.50421 )
+scale = Vector2( 0.326714, 0.326714 )
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 
 [editable path="Hurtbox"]

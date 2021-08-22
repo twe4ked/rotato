@@ -4,10 +4,10 @@
 [ext_resource path="res://Projectile.gd" type="Script" id=2]
 [ext_resource path="res://Hitbox.tscn" type="PackedScene" id=3]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 3 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 6, 3 )
 
 [node name="Projectile" type="KinematicBody2D"]
@@ -31,7 +31,7 @@ rect = Rect2( -10, -10, 6, 6 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 8, 8 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 3 )]
 visible = false
@@ -40,7 +40,7 @@ collision_mask = 8
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( 8, 8 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 
