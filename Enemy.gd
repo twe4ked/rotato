@@ -8,10 +8,23 @@ enum WeaponColor {
 }
 
 export var weapon_color = WeaponColor.Blue
+export var acceleration = 4
+export var max_speed = 10
 
 onready var sprite = $AnimatedSprite
+onready var wanderController = $WanderController
 
 var Grub = load("res://Grub.tscn")
+var velocity = Vector2.ZERO
+
+func _physics_process(delta):
+	if wanderController.get_time_left() == 0:
+		wanderController.start_timer(rand_range(1, 3))
+
+	var direction = global_position.direction_to(wanderController.target_position)
+	velocity = velocity.move_toward(direction * max_speed, acceleration)
+
+	velocity = move_and_slide(velocity)
 
 func _ready():
 	match weapon_color:
