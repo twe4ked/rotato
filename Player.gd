@@ -45,7 +45,6 @@ func _process(delta):
 		muzzleFlashTimer.start(0.2)
 
 		var projectile = spawn_projectile()
-		print(projectile)
 		world.add_child(projectile)
 
 	if muzzleFlashTimer.time_left > 0:
