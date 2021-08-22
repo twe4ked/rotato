@@ -31,7 +31,7 @@ onready var muzzleFlash = $MuzzleFlash
 onready var Projectile = load("res://Projectile.tscn")
 
 func _ready():
-	sprite.play()
+	sprite.play("Red")
 
 func _process(delta):
 	var world = get_tree().current_scene
@@ -51,22 +51,19 @@ func _process(delta):
 	rotate_weapon_color()
 
 	var spinner_rotation = 0.0
-	var hue = 0.0
 	match weapon_color:
 		WeaponColor.Red:
-			hue = 0.0
+			sprite.play("Red")
 			spinner_rotation = 0.0
 		WeaponColor.Green:
-			hue = 0.3
+			sprite.play("Green")
 			spinner_rotation = 90.0
 		WeaponColor.Blue:
-			hue = 0.6
+			sprite.play("Blue")
 			spinner_rotation = 180.0
 		WeaponColor.Purple:
-			hue = 0.7
+			sprite.play("Purple")
 			spinner_rotation = 270.0
-
-	sprite.get_material().set_shader_param("hue", hue)
 
 	var weaponSpinner = world.find_node("WeaponSpinner")
 	var old_rotation = weaponSpinner.get_rotation()
@@ -131,5 +128,3 @@ func rotate_weapon_color():
 				weapon_color = WeaponColor.Purple
 			WeaponColor.Purple:
 				weapon_color = WeaponColor.Red
-
-		print(weapon_color)

@@ -22,17 +22,15 @@ func _ready():
 	else:
 		velocity.x = 1
 
-	var hue = 0.0
 	match weapon_color:
 		WeaponColor.Red:
-			hue = 0.0
+			sprite.frame = 44
 		WeaponColor.Green:
-			hue = 0.3
+			sprite.frame = 80
 		WeaponColor.Blue:
-			hue = 0.6
+			sprite.frame = 79
 		WeaponColor.Purple:
-			hue = 0.7
-	sprite.get_material().set_shader_param("hue", hue)
+			sprite.frame = 69
 
 func _physics_process(_delta):
 	var _c = move_and_collide(velocity * speed)
