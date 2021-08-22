@@ -9,6 +9,7 @@ export var death_range_max = 10
 
 onready var wanderController = $WanderController
 onready var animationPlayer = $AnimationPlayer
+onready var sprite = $Sprite
 
 enum State {
 	Alive
@@ -47,6 +48,8 @@ func _physics_process(delta):
 			velocity = velocity.move_toward(direction * max_speed, acceleration)
 
 			velocity.y += gravity
+
+			sprite.flip_h = velocity.x < 0
 
 			velocity = move_and_slide(velocity, Vector2.UP)
 
