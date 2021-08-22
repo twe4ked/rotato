@@ -45,6 +45,8 @@ func _on_Hurtbox_area_entered(area):
 		var world = get_tree().current_scene
 		world.add_child(grub)
 
+		world.get_node("EnemyHit").play()
+
 		queue_free()
 	else:
 		print("wrong color")

@@ -49,6 +49,10 @@ func _process(delta):
 		var projectile = spawn_projectile()
 		world.add_child(projectile)
 
+		var shoot = world.get_node("Shoot")
+		shoot.stream.set_loop(false)
+		shoot.play()
+
 	if muzzleFlashTimer.time_left > 0:
 		muzzleFlash.visible = true
 	else:

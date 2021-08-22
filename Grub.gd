@@ -60,6 +60,8 @@ func _physics_process(delta):
 func _on_Hurtbox_area_entered(_area):
 	velocity = Vector2(rand_range(0, death_range_max), rand_range(0, -death_range_max)).normalized()
 	state = State.Dead
+	var world = get_tree().current_scene
+	world.get_node("GrubFlick").play()
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
