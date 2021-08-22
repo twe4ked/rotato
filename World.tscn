@@ -312,8 +312,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
-gravity = 500
-jump_force = 200
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
 frames = SubResource( 4 )

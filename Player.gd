@@ -3,9 +3,14 @@ extends KinematicBody2D
 export var acceleration = 20
 export var max_speed = 100
 export var friction = 100
-export var gravity = 10
-export var max_fall_speed = 100
-export var jump_force = 100
+
+export var jump_height: float = 40
+export var jump_time_to_peak: float = 0.4
+export var jump_time_to_descent: float = 0.3
+
+onready var jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
+onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
+onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 var velocity = Vector2.ZERO
 var facing = Facing.Right
@@ -94,16 +99,24 @@ func move(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction)
 
-	velocity.y += gravity * delta
-	if velocity.y > max_fall_speed:
-		velocity.y = max_fall_speed
+	velocity.y += get_gravity() * delta
 
 	if is_on_floor() && Input.is_action_just_pressed("ui_up"):
-		velocity.y = -jump_force
+		velocity.y = jump_velocity
 
 	sprite.flip_h = facing == Facing.Left
 
 	velocity = move_and_slide(velocity, Vector2.UP)
+
+func get_gravity() -> float:
+	if velocity.y < 0.0:
+		if Input.is_action_pressed("ui_up"):
+			return jump_gravity
+		else:
+			# TODO: This multiplier is hard to get right
+			return jump_gravity * 4.0
+	else:
+		return fall_gravity
 
 func spawn_projectile():
 	var projectile = Projectile.instance()
