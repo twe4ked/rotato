@@ -29,14 +29,16 @@ enum WeaponColor {
 
 var weapon_color = WeaponColor.Red
 
-onready var sprite = $AnimatedSprite
+onready var sprite = $Sprite
+onready var animationTree = $AnimationTree
+onready var animationPlayback = animationTree.get("parameters/playback")
 onready var muzzleFlashTimer = $MuzzleFlash/Timer
 onready var muzzleFlash = $MuzzleFlash
 
 onready var Projectile = load("res://Projectile.tscn")
 
 func _ready():
-	sprite.play("Red")
+	animationTree.active = true
 
 func _process(delta):
 	var world = get_tree().current_scene
@@ -57,17 +59,16 @@ func _process(delta):
 	var spinner_rotation = 0.0
 	match weapon_color:
 		WeaponColor.Red:
-			sprite.play("Red")
 			spinner_rotation = 0.0
 		WeaponColor.Green:
-			sprite.play("Green")
 			spinner_rotation = 90.0
 		WeaponColor.Blue:
-			sprite.play("Blue")
 			spinner_rotation = 180.0
 		WeaponColor.Purple:
-			sprite.play("Purple")
 			spinner_rotation = 270.0
+
+	animationTree.set("parameters/Idle/blend_position", weapon_color)
+	animationTree.set("parameters/Jumping/blend_position", weapon_color)
 
 	var weaponSpinner = world.find_node("WeaponSpinner")
 	var old_rotation = weaponSpinner.get_rotation()
@@ -100,7 +101,11 @@ func move(delta):
 
 	velocity.y += get_gravity() * delta
 
+	if is_on_floor():
+		animationPlayback.travel("Idle")
+
 	if is_on_floor() && Input.is_action_just_pressed("ui_up"):
+		animationPlayback.travel("Jumping")
 		velocity.y = jump_velocity
 
 	sprite.flip_h = facing == Facing.Left
