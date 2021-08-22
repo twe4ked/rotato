@@ -41,6 +41,7 @@ func _on_Hurtbox_area_entered(area):
 	if area.get_parent().weapon_color == weapon_color:
 		var grub = Grub.instance()
 		grub.position = global_position
+		grub.weapon_color = weapon_color
 		var world = get_tree().current_scene
 		world.add_child(grub)
 

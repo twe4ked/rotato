@@ -8,6 +8,7 @@ export var max_speed = 10
 export var death_range_max = 10
 
 onready var wanderController = $WanderController
+onready var animationPlayer = $AnimationPlayer
 
 enum State {
 	Alive
@@ -16,8 +17,25 @@ enum State {
 
 var state = State.Alive
 
+enum WeaponColor {
+	Red
+	Green
+	Blue
+	Purple
+}
+
+var weapon_color = WeaponColor.Blue
+
 func _ready():
-	$AnimatedSprite.play()
+	match weapon_color:
+		WeaponColor.Red:
+			animationPlayer.play("Red")
+		WeaponColor.Green:
+			animationPlayer.play("Green")
+		WeaponColor.Blue:
+			animationPlayer.play("Blue")
+		WeaponColor.Purple:
+			animationPlayer.play("Purple")
 
 func _physics_process(delta):
 	match state:
