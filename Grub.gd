@@ -63,5 +63,7 @@ func _on_Hurtbox_area_entered(_area):
 	var world = get_tree().current_scene
 	world.get_node("GrubFlick").play()
 
+	world.count_enemy_killed()
+
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
