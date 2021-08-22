@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://tilemap_packed.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
@@ -750,79 +750,110 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 4, 0, 4 )
 39/shapes = [  ]
 39/z_index = 0
 
-[sub_resource type="CapsuleShape2D" id=58]
+[sub_resource type="CapsuleShape2D" id=33]
 radius = 3.55291
 height = 3.59492
 
-[sub_resource type="CapsuleShape2D" id=59]
+[sub_resource type="CapsuleShape2D" id=34]
 radius = 3.86422
 height = 4.74116
 
-[sub_resource type="AnimationNodeAnimation" id=37]
+[sub_resource type="AnimationNodeAnimation" id=35]
 animation = "RedIdle"
 
-[sub_resource type="AnimationNodeAnimation" id=38]
+[sub_resource type="AnimationNodeAnimation" id=36]
 animation = "GreenIdle"
 
-[sub_resource type="AnimationNodeAnimation" id=39]
+[sub_resource type="AnimationNodeAnimation" id=37]
 animation = "BlueIdle"
 
-[sub_resource type="AnimationNodeAnimation" id=40]
+[sub_resource type="AnimationNodeAnimation" id=38]
 animation = "PurpleIdle"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=41]
-blend_point_0/node = SubResource( 37 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=39]
+blend_point_0/node = SubResource( 35 )
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 38 )
+blend_point_1/node = SubResource( 36 )
 blend_point_1/pos = 1.0
-blend_point_2/node = SubResource( 39 )
+blend_point_2/node = SubResource( 37 )
 blend_point_2/pos = 2.0
-blend_point_3/node = SubResource( 40 )
+blend_point_3/node = SubResource( 38 )
 blend_point_3/pos = 3.0
 min_space = 0.0
 max_space = 3.0
 snap = 1.0
 
-[sub_resource type="AnimationNodeAnimation" id=51]
+[sub_resource type="AnimationNodeAnimation" id=40]
 animation = "RedJump"
 
-[sub_resource type="AnimationNodeAnimation" id=55]
+[sub_resource type="AnimationNodeAnimation" id=41]
 animation = "GreenJump"
 
-[sub_resource type="AnimationNodeAnimation" id=56]
+[sub_resource type="AnimationNodeAnimation" id=42]
 animation = "BlueJump"
 
-[sub_resource type="AnimationNodeAnimation" id=57]
+[sub_resource type="AnimationNodeAnimation" id=43]
 animation = "PurpleJump"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=47]
-blend_point_0/node = SubResource( 51 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=44]
+blend_point_0/node = SubResource( 40 )
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 55 )
+blend_point_1/node = SubResource( 41 )
 blend_point_1/pos = 1.0
-blend_point_2/node = SubResource( 56 )
+blend_point_2/node = SubResource( 42 )
 blend_point_2/pos = 2.0
-blend_point_3/node = SubResource( 57 )
+blend_point_3/node = SubResource( 43 )
 blend_point_3/pos = 3.0
 min_space = 0.0
 max_space = 3.0
 snap = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+[sub_resource type="AnimationNodeAnimation" id=60]
+animation = "RedRun"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+[sub_resource type="AnimationNodeAnimation" id=67]
+animation = "GreenRun"
 
-[sub_resource type="AnimationNodeStateMachine" id=42]
-states/Idle/node = SubResource( 41 )
+[sub_resource type="AnimationNodeAnimation" id=68]
+animation = "BlueRun"
+
+[sub_resource type="AnimationNodeAnimation" id=69]
+animation = "PurpleRun"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=61]
+blend_point_0/node = SubResource( 60 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 67 )
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource( 68 )
+blend_point_2/pos = 2.0
+blend_point_3/node = SubResource( 69 )
+blend_point_3/pos = 3.0
+min_space = 0.0
+max_space = 3.0
+snap = 1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=63]
+
+[sub_resource type="AnimationNodeStateMachine" id=47]
+states/Idle/node = SubResource( 39 )
 states/Idle/position = Vector2( 604.5, 105.5 )
-states/Jumping/node = SubResource( 47 )
+states/Jumping/node = SubResource( 44 )
 states/Jumping/position = Vector2( 799, 104.5 )
-transitions = [ "Idle", "Jumping", SubResource( 48 ), "Jumping", "Idle", SubResource( 49 ) ]
+states/Running/node = SubResource( 61 )
+states/Running/position = Vector2( 604.5, 216.5 )
+transitions = [ "Idle", "Jumping", SubResource( 45 ), "Jumping", "Idle", SubResource( 46 ), "Idle", "Running", SubResource( 62 ), "Running", "Idle", SubResource( 63 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=60]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=48]
 
-[sub_resource type="Animation" id=61]
+[sub_resource type="Animation" id=49]
 resource_name = "BlueIdle"
 length = 0.4
 loop = true
@@ -840,7 +871,7 @@ tracks/0/keys = {
 "values": [ 63, 65 ]
 }
 
-[sub_resource type="Animation" id=62]
+[sub_resource type="Animation" id=50]
 resource_name = "BlueJump"
 length = 0.2
 loop = true
@@ -858,7 +889,25 @@ tracks/0/keys = {
 "values": [ 64 ]
 }
 
-[sub_resource type="Animation" id=63]
+[sub_resource type="Animation" id=64]
+resource_name = "BlueRun"
+length = 0.4
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 64, 63 ]
+}
+
+[sub_resource type="Animation" id=51]
 resource_name = "GreenIdle"
 length = 0.4
 loop = true
@@ -876,7 +925,7 @@ tracks/0/keys = {
 "values": [ 66, 68 ]
 }
 
-[sub_resource type="Animation" id=64]
+[sub_resource type="Animation" id=52]
 resource_name = "GreenJump"
 length = 0.1
 loop = true
@@ -894,7 +943,25 @@ tracks/0/keys = {
 "values": [ 67 ]
 }
 
-[sub_resource type="Animation" id=65]
+[sub_resource type="Animation" id=66]
+resource_name = "GreenRun"
+length = 0.4
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 67, 66 ]
+}
+
+[sub_resource type="Animation" id=53]
 resource_name = "PurpleIdle"
 length = 0.4
 loop = true
@@ -912,7 +979,7 @@ tracks/0/keys = {
 "values": [ 60, 62 ]
 }
 
-[sub_resource type="Animation" id=66]
+[sub_resource type="Animation" id=54]
 resource_name = "PurpleJump"
 length = 0.1
 loop = true
@@ -930,7 +997,25 @@ tracks/0/keys = {
 "values": [ 61 ]
 }
 
-[sub_resource type="Animation" id=67]
+[sub_resource type="Animation" id=65]
+resource_name = "PurpleRun"
+length = 0.4
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 61, 60 ]
+}
+
+[sub_resource type="Animation" id=55]
 resource_name = "RedIdle"
 length = 0.4
 loop = true
@@ -948,7 +1033,7 @@ tracks/0/keys = {
 "values": [ 40, 42 ]
 }
 
-[sub_resource type="Animation" id=68]
+[sub_resource type="Animation" id=56]
 resource_name = "RedJump"
 length = 0.2
 loop = true
@@ -966,10 +1051,28 @@ tracks/0/keys = {
 "values": [ 41 ]
 }
 
-[sub_resource type="DynamicFont" id=69]
+[sub_resource type="Animation" id=57]
+resource_name = "RedRun"
+length = 0.4
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 41, 40 ]
+}
+
+[sub_resource type="DynamicFont" id=58]
 font_data = ExtResource( 4 )
 
-[sub_resource type="RectangleShape2D" id=70]
+[sub_resource type="RectangleShape2D" id=59]
 extents = Vector2( 56, 36 )
 
 [node name="World" type="Node2D"]
@@ -993,12 +1096,12 @@ __meta__ = {
 texture = ExtResource( 1 )
 hframes = 10
 vframes = 9
-frame = 40
+frame = 66
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 visible = false
 position = Vector2( -0.162415, 2.67984 )
-shape = SubResource( 58 )
+shape = SubResource( 33 )
 
 [node name="MuzzleFlash" type="Sprite" parent="Player"]
 visible = false
@@ -1018,24 +1121,29 @@ collision_mask = 16
 
 [node name="CollisionShape2D" parent="Player/Hitbox" index="0"]
 position = Vector2( -0.174599, 1.86237 )
-shape = SubResource( 59 )
+shape = SubResource( 34 )
 
 [node name="AnimationTree" type="AnimationTree" parent="Player"]
-tree_root = SubResource( 42 )
+tree_root = SubResource( 47 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 60 )
+parameters/playback = SubResource( 48 )
 parameters/Idle/blend_position = 0.0
 parameters/Jumping/blend_position = 2.21735
+parameters/Running/blend_position = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
-anims/BlueIdle = SubResource( 61 )
-anims/BlueJump = SubResource( 62 )
-anims/GreenIdle = SubResource( 63 )
-anims/GreenJump = SubResource( 64 )
-anims/PurpleIdle = SubResource( 65 )
-anims/PurpleJump = SubResource( 66 )
-anims/RedIdle = SubResource( 67 )
-anims/RedJump = SubResource( 68 )
+anims/BlueIdle = SubResource( 49 )
+anims/BlueJump = SubResource( 50 )
+anims/BlueRun = SubResource( 64 )
+anims/GreenIdle = SubResource( 51 )
+anims/GreenJump = SubResource( 52 )
+anims/GreenRun = SubResource( 66 )
+anims/PurpleIdle = SubResource( 53 )
+anims/PurpleJump = SubResource( 54 )
+anims/PurpleRun = SubResource( 65 )
+anims/RedIdle = SubResource( 55 )
+anims/RedJump = SubResource( 56 )
+anims/RedRun = SubResource( 57 )
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -1100,7 +1208,7 @@ __meta__ = {
 [node name="RichTextLabel" type="RichTextLabel" parent="Instructions"]
 margin_right = 360.0
 margin_bottom = 97.0
-custom_fonts/normal_font = SubResource( 69 )
+custom_fonts/normal_font = SubResource( 58 )
 custom_colors/default_color = Color( 0.796078, 0.505882, 0.368627, 1 )
 text = "Move     - Left or Right
 Jump     - Up
@@ -1115,7 +1223,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Instructions/Area2D"]
 position = Vector2( 226.565, 198.798 )
-shape = SubResource( 70 )
+shape = SubResource( 59 )
 
 [connection signal="body_entered" from="Instructions/Area2D" to="Instructions" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Instructions/Area2D" to="Instructions" method="_on_Area2D_body_exited"]

@@ -69,6 +69,7 @@ func _process(delta):
 
 	animationTree.set("parameters/Idle/blend_position", weapon_color)
 	animationTree.set("parameters/Jumping/blend_position", weapon_color)
+	animationTree.set("parameters/Running/blend_position", weapon_color)
 
 	var weaponSpinner = world.find_node("WeaponSpinner")
 	var old_rotation = weaponSpinner.get_rotation()
@@ -103,6 +104,8 @@ func move(delta):
 
 	if is_on_floor():
 		animationPlayback.travel("Idle")
+		if velocity.x != 0:
+			animationPlayback.travel("Running")
 
 	if is_on_floor() && Input.is_action_just_pressed("ui_up"):
 		animationPlayback.travel("Jumping")
