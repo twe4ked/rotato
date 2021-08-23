@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/thwack-09.wav-2075f73dbc3e3c4be61041acd455362c.sample"
+path="res://.import/thwack-07.wav-16ca86a02eaeb5eb29fdd6230e61e569.sample"
 
 [deps]
 
-source_file="res://Sounds/thwack-09.wav"
-dest_files=[ "res://.import/thwack-09.wav-2075f73dbc3e3c4be61041acd455362c.sample" ]
+source_file="res://Assets/thwack-07.wav"
+dest_files=[ "res://.import/thwack-07.wav-16ca86a02eaeb5eb29fdd6230e61e569.sample" ]
 
 [params]
 

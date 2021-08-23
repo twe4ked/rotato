@@ -35,7 +35,7 @@ onready var animationPlayback = animationTree.get("parameters/playback")
 onready var muzzleFlashTimer = $MuzzleFlash/Timer
 onready var muzzleFlash = $MuzzleFlash
 
-onready var Projectile = load("res://Projectile.tscn")
+onready var Projectile = load("res://Player/Projectile.tscn")
 
 func _ready():
 	animationTree.active = true

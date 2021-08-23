@@ -14,7 +14,7 @@ export var max_speed = 10
 onready var sprite = $AnimatedSprite
 onready var wanderController = $WanderController
 
-var Grub = load("res://Grub.tscn")
+var Grub = load("res://Enemies/Grub.tscn")
 var velocity = Vector2.ZERO
 
 func _physics_process(delta):
