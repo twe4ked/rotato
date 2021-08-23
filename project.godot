@@ -12,7 +12,6 @@ config_version=4
 
 config/name="Rotation"
 run/main_scene="res://World.tscn"
-config/icon="res://icon.png"
 
 [autoload]
 

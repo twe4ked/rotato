@@ -10,7 +10,7 @@ onready var wanderController = $WanderController
 var Grub = load("res://Enemies/Grub.tscn")
 var velocity = Vector2.ZERO
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if wanderController.get_time_left() == 0:
 		wanderController.start_timer(rand_range(1, 3))
 
