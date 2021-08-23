@@ -1166,10 +1166,10 @@ weapon_color = 1
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 75.3755, 90.1197 )
-weapon_color = 0
 
 [node name="Enemy4" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 209.218, 46.4567 )
+weapon_color = 2
 
 [node name="WeaponSpinner" type="Node2D" parent="."]
 position = Vector2( 22, 22 )

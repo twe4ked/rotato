@@ -4,16 +4,9 @@ export var speed = 6
 
 var flip = false
 var velocity = Vector2.ZERO
-export(int) var weapon_color = WeaponColor.Red
+var weapon_color = WeaponColor.default()
 
 onready var sprite = $Sprite
-
-enum WeaponColor {
-	Red
-	Green
-	Blue
-	Purple
-}
 
 func _ready():
 	sprite.flip_h = flip
@@ -23,13 +16,13 @@ func _ready():
 		velocity.x = 1
 
 	match weapon_color:
-		WeaponColor.Red:
+		WeaponColor.WeaponColor.Red:
 			sprite.frame = 44
-		WeaponColor.Green:
+		WeaponColor.WeaponColor.Green:
 			sprite.frame = 80
-		WeaponColor.Blue:
+		WeaponColor.WeaponColor.Blue:
 			sprite.frame = 79
-		WeaponColor.Purple:
+		WeaponColor.WeaponColor.Purple:
 			sprite.frame = 69
 
 func _physics_process(_delta):

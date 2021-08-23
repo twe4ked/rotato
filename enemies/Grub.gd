@@ -18,25 +18,10 @@ enum State {
 
 var state = State.Alive
 
-enum WeaponColor {
-	Red
-	Green
-	Blue
-	Purple
-}
-
-var weapon_color = WeaponColor.Blue
+var weapon_color = WeaponColor.default()
 
 func _ready():
-	match weapon_color:
-		WeaponColor.Red:
-			animationPlayer.play("Red")
-		WeaponColor.Green:
-			animationPlayer.play("Green")
-		WeaponColor.Blue:
-			animationPlayer.play("Blue")
-		WeaponColor.Purple:
-			animationPlayer.play("Purple")
+	animationPlayer.play(WeaponColor.name(weapon_color))
 
 func _physics_process(delta):
 	match state:

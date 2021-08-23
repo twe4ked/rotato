@@ -1,13 +1,6 @@
 extends KinematicBody2D
 
-enum WeaponColor {
-	Red
-	Green
-	Blue
-	Purple
-}
-
-export var weapon_color = WeaponColor.Blue
+export(int) var weapon_color = WeaponColor.default()
 export var acceleration = 4
 export var max_speed = 10
 
@@ -27,15 +20,7 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity)
 
 func _ready():
-	match weapon_color:
-		WeaponColor.Red:
-			sprite.play("Red")
-		WeaponColor.Green:
-			sprite.play("Green")
-		WeaponColor.Blue:
-			sprite.play("Blue")
-		WeaponColor.Purple:
-			sprite.play("Purple")
+	sprite.play(WeaponColor.name(weapon_color))
 
 func _on_Hurtbox_area_entered(area):
 	if area.get_parent().weapon_color == weapon_color:

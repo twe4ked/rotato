@@ -20,14 +20,7 @@ enum Facing {
 	Right
 }
 
-enum WeaponColor {
-	Red
-	Green
-	Blue
-	Purple
-}
-
-var weapon_color = WeaponColor.Red
+var weapon_color = WeaponColor.default()
 
 onready var sprite = $Sprite
 onready var animationTree = $AnimationTree
@@ -60,16 +53,7 @@ func _process(delta):
 
 	rotate_weapon_color()
 
-	var spinner_rotation = 0.0
-	match weapon_color:
-		WeaponColor.Red:
-			spinner_rotation = 0.0
-		WeaponColor.Green:
-			spinner_rotation = 90.0
-		WeaponColor.Blue:
-			spinner_rotation = 180.0
-		WeaponColor.Purple:
-			spinner_rotation = 270.0
+	var spinner_rotation = WeaponColor.spin_rotation(weapon_color)
 
 	animationTree.set("parameters/Idle/blend_position", weapon_color)
 	animationTree.set("parameters/Jumping/blend_position", weapon_color)
@@ -143,12 +127,4 @@ func spawn_projectile():
 
 func rotate_weapon_color():
 	if Input.is_action_just_pressed("ui_down"):
-		match weapon_color:
-			WeaponColor.Red:
-				weapon_color = WeaponColor.Green
-			WeaponColor.Green:
-				weapon_color = WeaponColor.Blue
-			WeaponColor.Blue:
-				weapon_color = WeaponColor.Purple
-			WeaponColor.Purple:
-				weapon_color = WeaponColor.Red
+		weapon_color = WeaponColor.next(weapon_color)
